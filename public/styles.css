@@ -1,0 +1,283 @@
+:root {
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --primary: #1a63ff;
+  --primary-soft: #eaf2ff;
+  --border: #dfe7f5;
+  --text: #1c2430;
+  --muted: #5d6b7d;
+  --success: #1b8f5a;
+  --warning: #c57b00;
+  --shadow: 0 12px 32px rgba(20, 35, 56, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #eef5ff 0%, #f8fafc 100%);
+  color: var(--text);
+}
+
+.app-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.topbar {
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.input-panel,
+.result-panel,
+.insight-panel,
+.report-panel {
+  min-height: 320px;
+}
+
+.panel h2 {
+  margin: 0 0 18px;
+  font-size: 1.4rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input[type='text'],
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+}
+
+input[type='file'] {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: #fafcff;
+}
+
+.radio-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.primary-btn {
+  background: var(--primary);
+  color: white;
+  width: 100%;
+}
+
+.secondary-btn {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.small-btn {
+  padding: 11px 14px;
+  white-space: nowrap;
+}
+
+.search-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.search-inline input {
+  flex: 1;
+}
+
+.search-results-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fafcff;
+  margin-bottom: 18px;
+}
+
+.search-results {
+  display: grid;
+  gap: 10px;
+}
+
+.search-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid var(--border);
+}
+
+.search-item a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.search-item p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, #f2f7ff, #edfaff);
+  border: 1px solid var(--primary-soft);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.summary-card h3,
+.result-block h3,
+.result-block h4,
+.challenge-box h4 {
+  margin-top: 0;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.result-block {
+  margin-bottom: 18px;
+}
+
+.result-block ul,
+.challenge-box ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.double-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.challenge-box {
+  margin-top: 18px;
+  background: #fffaf0;
+  border: 1px solid #f5ddb1;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.insight-group {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+  background: #fafcff;
+}
+
+.insight-group h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.insight-group p,
+.insight-group li {
+  color: var(--muted);
+}
+
+.report-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.report-list li {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  color: var(--muted);
+}
+
+.report-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

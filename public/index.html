@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Tech Research</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">R&D 기술 분석 웹앱</p>
+          <h1>My Tech Research</h1>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel input-panel">
+          <h2>① 입력</h2>
+          <form id="analysis-form" enctype="multipart/form-data">
+            <div class="field">
+              <label for="projectName">프로젝트명</label>
+              <input id="projectName" name="projectName" type="text" placeholder="차세대 배터리 기술 분석" value="차세대 배터리 기술 분석" required />
+            </div>
+
+            <div class="field">
+              <label for="purpose">분석 목적</label>
+              <textarea id="purpose" name="purpose" rows="3" placeholder="기술 동향 및 R&D 방향 파악" required>최근 기술 동향과 향후 R&D 방향 파악</textarea>
+            </div>
+
+            <div class="field">
+              <label for="files">분석 자료</label>
+              <input id="files" name="files" type="file" multiple accept=".pdf,.docx,.txt" />
+            </div>
+
+            <div class="field">
+              <label for="searchQuery">웹 검색 키워드 (선택)</label>
+              <div class="search-inline">
+                <input id="searchQuery" type="text" placeholder="예: solid-state battery market" />
+                <button id="searchButton" type="button" class="secondary-btn small-btn">검색</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>분석 모드</label>
+              <div class="radio-group">
+                <label><input type="radio" name="analysisMode" value="summary" checked /> 정리·요약형</label>
+                <label><input type="radio" name="analysisMode" value="inference" /> 추론·예측형</label>
+              </div>
+            </div>
+
+            <button type="submit" class="primary-btn">분석 시작</button>
+          </form>
+        </section>
+
+        <section class="panel result-panel">
+          <h2>② 분석 결과</h2>
+          <div id="loading" class="hidden">분석 중입니다. 잠시만 기다려 주세요...</div>
+          <div class="search-results-box">
+            <h3>웹 검색 결과</h3>
+            <div id="searchResults" class="search-results"></div>
+          </div>
+          <div id="result-container" class="result-container">
+            <div class="summary-card">
+              <h3>핵심 요약</h3>
+              <p id="summary-text">분석을 시작하면 핵심 요약이 표시됩니다.</p>
+            </div>
+
+            <div class="result-block">
+              <h3>핵심 기술</h3>
+              <div id="technologies" class="chip-list"></div>
+            </div>
+
+            <div class="result-block">
+              <h3>핵심 키워드</h3>
+              <div id="keywords" class="chip-list"></div>
+            </div>
+
+            <div class="result-block">
+              <h3>기술 구성</h3>
+              <ul id="components"></ul>
+            </div>
+
+            <div class="result-block">
+              <h3>기술적 특징</h3>
+              <div class="double-grid">
+                <div>
+                  <h4>장점</h4>
+                  <ul id="strengths"></ul>
+                </div>
+                <div>
+                  <h4>한계</h4>
+                  <ul id="limitations"></ul>
+                </div>
+              </div>
+              <div class="challenge-box">
+                <h4>기술적 문제</h4>
+                <ul id="technicalChallenges"></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel insight-panel">
+          <h2>③ 인사이트</h2>
+          <div id="insight-container"></div>
+        </section>
+
+        <section class="panel report-panel">
+          <h2>④ 리포트</h2>
+          <div id="report-container"></div>
+          <div class="report-actions">
+            <button class="secondary-btn" id="download-pdf" type="button">PDF 다운로드</button>
+            <button class="secondary-btn" id="new-analysis" type="button">새 분석 시작</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
