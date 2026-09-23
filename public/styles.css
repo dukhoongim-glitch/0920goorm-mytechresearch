@@ -72,6 +72,53 @@ h1 {
   font-size: 1.4rem;
 }
 
+.history-panel {
+  margin-bottom: 24px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.history-list {
+  display: grid;
+  gap: 10px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafcff;
+}
+
+.history-item button {
+  flex-shrink: 0;
+}
+
+.history-item-title {
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+
+.history-item-meta,
+.empty-state {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .field {
   display: flex;
   flex-direction: column;

@@ -14,8 +14,72 @@ const newAnalysisButton = document.getElementById('new-analysis');
 const searchButton = document.getElementById('searchButton');
 const searchQueryInput = document.getElementById('searchQuery');
 const searchResultsContainer = document.getElementById('searchResults');
+const historyList = document.getElementById('history-list');
+const clearHistoryButton = document.getElementById('clear-history');
 
 let currentProjectId = null;
+const HISTORY_KEY = 'my-tech-research-history';
+
+function getHistory() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    return Array.isArray(saved) ? saved : [];
+  } catch (error) {
+    console.error('분석 히스토리를 읽지 못했습니다.', error);
+    return [];
+  }
+}
+
+function saveHistory(data) {
+  const historyItem = {
+    id: data.project?.id || crypto.randomUUID(),
+    savedAt: new Date().toISOString(),
+    project: data.project,
+    analysis: data.analysis,
+    insight: data.insight,
+    report: data.report,
+  };
+  const history = [historyItem, ...getHistory().filter((item) => item.id !== historyItem.id)].slice(0, 20);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  renderHistory();
+}
+
+function renderHistory() {
+  const history = getHistory();
+  historyList.innerHTML = '';
+
+  if (!history.length) {
+    historyList.innerHTML = '<p class="empty-state">저장된 분석이 없습니다.</p>';
+    return;
+  }
+
+  history.forEach((item) => {
+    const row = document.createElement('div');
+    row.className = 'history-item';
+
+    const details = document.createElement('div');
+    const title = document.createElement('p');
+    title.className = 'history-item-title';
+    title.textContent = item.project?.name || '이름 없는 분석';
+    const meta = document.createElement('p');
+    meta.className = 'history-item-meta';
+    meta.textContent = new Date(item.savedAt).toLocaleString('ko-KR');
+    details.append(title, meta);
+
+    const openButton = document.createElement('button');
+    openButton.type = 'button';
+    openButton.className = 'secondary-btn small-btn';
+    openButton.textContent = '열기';
+    openButton.addEventListener('click', () => {
+      currentProjectId = item.project?.id || item.id;
+      renderAnalysis(item);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    row.append(details, openButton);
+    historyList.appendChild(row);
+  });
+}
 
 function setLoading(isLoading) {
   loading.classList.toggle('hidden', !isLoading);
@@ -163,6 +227,8 @@ function renderAnalysis(data) {
   }
 }
 
+renderHistory();
+
 searchButton.addEventListener('click', runSearch);
 searchQueryInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
@@ -187,6 +253,7 @@ form.addEventListener('submit', async (event) => {
 
     const data = await response.json();
     renderAnalysis(data);
+    saveHistory(data);
   } catch (error) {
     summaryText.textContent = error.message;
     console.error(error);
@@ -219,4 +286,15 @@ newAnalysisButton.addEventListener('click', () => {
   insightContainer.innerHTML = '';
   reportContainer.innerHTML = '';
   currentProjectId = null;
+});
+
+clearHistoryButton.addEventListener('click', () => {
+  if (!getHistory().length) {
+    return;
+  }
+
+  if (confirm('저장된 분석 히스토리를 모두 삭제할까요?')) {
+    localStorage.removeItem(HISTORY_KEY);
+    renderHistory();
+  }
 });
