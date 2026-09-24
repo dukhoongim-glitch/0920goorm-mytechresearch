@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
+    "build": "node -e \"console.log('Build step complete')\"",
     "vercel-build": "node -e \"console.log('Vercel build step complete')\""
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
