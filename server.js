@@ -456,10 +456,10 @@ if (require.main === module) {
   });
 }
 
-module.exports = {
+module.exports = Object.assign(app, {
   app,
   buildOpenAIRequestPayload,
   parseOpenAIResponse,
   callOpenAIIfConfigured,
   searchWeb,
-};
+});
